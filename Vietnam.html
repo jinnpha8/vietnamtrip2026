@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇻🇳 ทริปเวียดนามใต้ สายลุย Local 100%</title>
+    <!-- นำเข้าฟอนต์ Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #FAFAFA;
+            color: #333333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Section */
+        header {
+            background: linear-gradient(rgba(194, 65, 12, 0.85), rgba(154, 52, 18, 0.85)), url('https://cdn.sanity.io/images/nxpteyfv/goguides/60dd8070e6db9ccbf5c10a4662d0aacb2820da24-1600x1066.jpg') center/cover;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+        .badges {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: #FFFFFF;
+            color: #EA580C;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .badge-dark {
+            background: #FFEDD5;
+            color: #9A3412;
+        }
+
+        /* Travelers Section */
+        .travelers-section, .packing-section {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #FFEDD5;
+        }
+        .section-title {
+            color: #EA580C;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px dashed #FFEDD5;
+            padding-bottom: 15px;
+        }
+        .travelers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+        .traveler-card {
+            background: #FFF7ED;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #FFEDD5;
+            transition: transform 0.2s;
+        }
+        .traveler-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(234, 88, 12, 0.15);
+        }
+        
+        .traveler-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            object-fit: cover;
+            border: 3px solid #EA580C;
+            display: block;
+            background-color: #FFEDD5;
+        }
+        
+        .traveler-name {
+            font-weight: 700;
+            color: #C2410C;
+            font-size: 1.1rem;
+        }
+        .traveler-age {
+            font-size: 0.85rem;
+            color: #9A3412;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .traveler-role {
+            font-size: 0.85rem;
+            color: #4B5563;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Packing Section */
+        .flex-warning {
+            background: #FEF2F2;
+            border: 2px dashed #EF4444;
+            color: #B91C1C;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .packing-item {
+            background: #FFF7ED;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #F97316;
+        }
+        .packing-item h3 {
+            margin-top: 0;
+            color: #C2410C;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .packing-item ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+        .packing-item li {
+            margin-bottom: 6px;
+        }
+        .packing-item li b {
+            color: #1F2937;
+        }
+
+        /* Day Cards */
+        .card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #FFEDD5;
+        }
+        .card-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: #EA580C;
+        }
+        .card-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: #FFEDD5;
+            color: #EA580C;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-top: 2px solid #FFEDD5;
+            border-bottom: 2px solid #FFEDD5;
+            background-color: #F3F4F6;
+        }
+
+        .card-body {
+            padding: 25px 20px;
+        }
+
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .timeline li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: #4B5563;
+        }
+        .timeline li b {
+            color: #1F2937;
+        }
+        .timeline li::before {
+            content: "📍";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.1rem;
+        }
+
+        /* Highlights & Mission Boxes */
+        .highlight-box {
+            background: #FFF7ED;
+            border-left: 4px solid #F97316;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .mission-box {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-left: 4px solid #22C55E;
+            padding: 18px 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .box-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .hl-title { color: #C2410C; }
+        .ms-title { color: #15803D; }
+
+        .item-row {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+        .item-row b { color: #1F2937; }
+        .item-row:last-child { margin-bottom: 0; }
+
+        .mission-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mission-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+        .mission-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1rem;
+        }
+        .mission-list li:last-child { margin-bottom: 0; }
+        .mission-list b { color: #166534; }
+
+        .tag-local, .tag-sig {
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .tag-local { background: #F97316; }
+        .tag-sig { background: #C2410C; }
+
+        .budget-box {
+            text-align: center;
+            background: #FFF7ED;
+            border: 2px dashed #F97316;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .budget-box h2 {
+            color: #EA580C;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .budget-note {
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #FFEDD5;
+            text-align: center;
+        }
+        .contact-box h2 {
+            color: #EA580C;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .contact-box p {
+            color: #4B5563;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .contact-email {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .email-badge {
+            background: #FFF7ED;
+            color: #C2410C;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 2px solid #F97316;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+        .email-badge span {
+            color: #1F2937;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.7rem; }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .card-img { height: 180px; }
+            .email-badge { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🇻🇳 INDEPTH ITINERARY</h1>
+        <div class="subtitle">เจาะลึกวิถีชีวิต Local 100% | โฮจิมินห์ • ญาจาง • หมุยเน่</div>
+        <div class="badges">
+            <span class="badge">🔥 สายลุย แบกเป้ เช่ามอเตอร์ไซค์</span>
+            <span class="badge badge-dark">💰 งบส่วนกลาง 9,100.-</span>
+        </div>
+    </header>
+
+    <!-- Section: สมาชิกผู้ร่วมเดินทาง -->
+    <div class="travelers-section">
+        <h2 class="section-title">👥 สมาชิกผู้ร่วมชะตากรรม (5 สายลุย)</h2>
+        <div class="travelers-grid">
+            <div class="traveler-card">
+                <img class="traveler-avatar" src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t39.30808-6/741919770_4472230999698831_4296148329508469748_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p6c4BOjpNOoQ7kNvwH9iIgG&_nc_oc=Adq2W87hDv9uDaI6lhAq4Z5v1RPGv-3yHAZQrw7dMNXHKjLMjWId8D5nJhv_63O5GXXtZYrF02ZkboRXzWtuKBv8&_nc_zt=23&_nc_ht=scontent.fbkk22-1.fna&_nc_gid=pDivFQv_tY6SF-KL8flGLw&_nc_ss=7b2a8&oh=00_AQFsbyhDerSm9OTaotX5UfszSn5OI3qYFAMEIJZYT609UQ&oe=6A76711B" alt="แป๊ป">
+                <div class="traveler-name">แป๊ป</div>
+                <div class="traveler-age">(อายุ 31 ปี)</div>
+                <div class="traveler-role">คนจัดทริป</div>
+            </div>
+            <div class="traveler-card">
+                <img class="traveler-avatar" src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-1/713784696_4442092276047649_5287542282699006485_n.jpg?stp=dst-jpg_tt6&cstp=mx1080x1080&ctp=s480x480&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=1d2534&_nc_ohc=Nc_t2Rk9klIQ7kNvwEhFWk0&_nc_oc=AdpAvr3Q5oXXGbp0b5NkK6VO-VgsNJyVNR6c61oxzrQ8BaYoMOTPa5gsqfJQy8HPYW-_uhzSLO6BL8QvFeR6cAsj&_nc_zt=24&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=fiXGFiqbTVDA3fIYNFfSqg&_nc_ss=7b2a8&oh=00_AQGLw6hwY0es9fEcVqd9l74JSLaRVlaLaFTYz8ojV7aKnA&oe=6A768976" alt="แป้ง">
+                <div class="traveler-name">แป้ง</div>
+                <div class="traveler-age">(อายุ 32 ปี)</div>
+                <div class="traveler-role">ตากล้องประจำทริป</div>
+            </div>
+            <div class="traveler-card">
+                <img class="traveler-avatar" src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-1/687984598_27004047102524381_759946200770131702_n.jpg?stp=dst-jpg_tt6&cstp=mx1956x1960&ctp=s320x320&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=1d2534&_nc_ohc=nCw0paz8sFkQ7kNvwEAUl3Q&_nc_oc=AdqzLDCdd5e8TDSjvtAJ7H3GXTIIzRVDn_w7ePuPhap0UHkVLMcORfth9IIhY49qujGqZjmtbSlZraIjcdnYgSN3&_nc_zt=24&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=nzoRn4zRXTl7v9M2_RcUeg&_nc_ss=7b2a8&oh=00_AQFd4vDum7xzztftZRMXsEzPUztmkS6XMKi7lbHDGrpdEw&oe=6A768A81" alt="เพื่อนคนที่ 3">
+                <div class="traveler-name">เพื่อนคนที่ 3</div>
+                <div class="traveler-age">(อายุ 27 ปี)</div>
+                <div class="traveler-role">GEN Z ปลอม / สายกิน</div>
+            </div>
+            <div class="traveler-card">
+                <img class="traveler-avatar" src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t39.30808-6/436149903_7553859317990318_3807577971344906429_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx659x660&ctp=s659x660&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Oi_7mAH-OkAQ7kNvwF-WlD9&_nc_oc=AdpQQFnL0pQrY94QYERTSIpvd3psi9nGva7l6ffjVzN9hrh0yrYPu8tx5z7DaTXT1T0YhxENrHbie4FYQazKB9qX&_nc_zt=23&_nc_ht=scontent.fbkk22-1.fna&_nc_gid=XcPbyh-hARjjqeMMkguYjw&_nc_ss=7b2a8&oh=00_AQGLb2cFGHrxbp67YlOd2qtCN_g29Yb5O3vecrh9yj06ng&oe=6A766289" alt="เพื่อนคนที่ 4">
+                <div class="traveler-name">เพื่อนคนที่ 4</div>
+                <div class="traveler-age">(อายุ 32 ปี)</div>
+                <div class="traveler-role">สายชิล</div>
+            </div>
+            <div class="traveler-card">
+                <img class="traveler-avatar" src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/551040167_24612875358376611_7152146994104601478_n.jpg?stp=dst-jpg_tt6&cstp=mx826x826&ctp=s826x826&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=9QnCeuQgf38Q7kNvwEypLsz&_nc_oc=AdpotG6vN8nbcu8uT_KFyTGJoTNty9e_uWdLqTJalkD4uiQRRItq3n9DexWLTU-8STA_Pd32yWTWnyGUIjghfmB3&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=RQY0Igy3lq37JLUGtcufnA&_nc_ss=7b2a8&oh=00_AQGtoVwMmFmkaOFmMOtoxIj8J9plpB6HEstbaq1iN5z0Ow&oe=6A766AB3" alt="เพื่อนคนที่ 5">
+                <div class="traveler-name">เพื่อนคนที่ 5</div>
+                <div class="traveler-age">(อายุ 24 ปี)</div>
+                <div class="traveler-role">GEN Z</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: เตรียมของ (Packing List) -->
+    <div class="packing-section">
+        <h2 class="section-title">🎒 เตรียมของก่อนลุย (Packing List)</h2>
+        <div class="flex-warning">
+            ⚠️ คำเตือน: แผนการเดินทางและเวลาทั้งหมด "ยืดหยุ่นได้"<br>ทุกอย่างสามารถเปลี่ยนแปลงได้ตามหน้างานและความอินดี้ของพวกเรา!
+        </div>
+        <div class="packing-grid">
+            <div class="packing-item">
+                <h3>👗 การแต่งตัว & พร็อพ</h3>
+                <ul>
+                    <li><b>เสื้อผ้าหน้าร้อนโปร่งสบาย</b> (อากาศเวียดนามใต้ร้อนๆ ชื้นๆ คล้ายไทย)</li>
+                    <li><b>ชุดสีจัดจ้าน</b> (แดง/ส้ม/เหลือง/ขาว) ไว้ถ่ายรูปให้ป๊อปตัดกับสีทะเลทราย</li>
+                    <li><b>เสื้อกันหนาว + กางเกงขายาว</b> (สำคัญมาก! เอาไว้ใส่นอนบนรถบัสนอน แอร์หนาวเหมือนอยู่ขั้วโลก)</li>
+                    <li><b>แว่นกันแดด + หมวก</b> (ห้ามลืม กันทรายเข้าตาตอนแว้นรถจี๊ป)</li>
+                    <li><b>รองเท้าแตะลุยน้ำ</b> (สำหรับเดินลุยลำธารนางฟ้า)</li>
+                </ul>
+            </div>
+            <div class="packing-item">
+                <h3>💊 ยา & สุขภาพ</h3>
+                <ul>
+                    <li><b>ยาแก้เมารถ / เมาเรือ</b> (เราต้องนั่งรถบัสข้ามเมืองและรถจี๊ปเหวี่ยงๆ)</li>
+                    <li><b>ยาแก้ท้องเสีย / คาร์บอน</b> (เผื่อธาตุแตกจากการซัดซีฟู้ดสตรีทฟู้ด)</li>
+                    <li><b>ยาพารา / ยาแก้แพ้ / พลาสเตอร์</b> (ยาประจำตัวพื้นฐาน)</li>
+                    <li><b>ครีมกันแดดทาหน้าทาตัว</b> (โบกไปเลย แดดทะเลทรายแผดเผามาก)</li>
+                    <li><b>ทิชชู่เปียก / ทิชชู่แห้ง</b> (จำเป็นมากเวลาเข้าห้องน้ำสาธารณะ)</li>
+                </ul>
+            </div>
+            <div class="packing-item">
+                <h3>☔ ของจิปาถะ & เอาตัวรอด</h3>
+                <ul>
+                    <li><b>ร่มพับได้ / เสื้อกันฝน</b> (กันเหนียวเผื่อเจอฝนหลงฤดู หรือใช้กางบังแดดได้)</li>
+                    <li><b>พาวเวอร์แบงค์</b> (ถ่ายรูปทำคอนเทนต์เยอะ แบตหมดแน่นอน)</li>
+                    <li><b>สายชาร์จยาวๆ / หัวแปลงปลั๊ก</b> (ปลั๊กเวียดนามส่วนใหญ่เหมือนไทย แต่พกไปเผื่อรูในห้องไม่พอ)</li>
+                    <li><b>ถุงซิปล็อค</b> (ใส่ชุดที่เปียก หรือเอาไว้กันทรายเข้ามือถือ)</li>
+                    <li><b>กระเป๋าสะพายคาดอก</b> (เอาไว้ใส่พาสปอร์ตและเงิน ป้องกันการโดนล้วงกระเป๋าที่โฮจิมินห์)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 1: ไซ่ง่อนสไตล์ & รถบัสนอนสุดเฟี้ยว 🚌</h2>
+            <span class="card-date">27 ส.ค. (โฮจิมินห์)</span>
+        </div>
+        <img class="card-img" src="https://image.kkday.com/v2/image/get/c_fit%2Cq_55%2Ct_webp%2Cw_960/s1.kkday.com/product_22234/20201208084321_vXRrA/jpg" alt="Ho Chi Minh City Sleeper Bus">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>15:30 น.</b> ลงเครื่อง (SGN) เข้าเมืองเอากระเป๋าไปฝาก</li>
+                <li><b>17:00 น.</b> เดินชิลโซนเมืองเก่า ถ่ายรูปสถาปัตยกรรมยุคโคโลเนียล (โบสถ์ไซ่ง่อน / ไปรษณีย์กลาง)</li>
+                <li><b>19:00 น.</b> ตามล่า <b>Bánh Mì Huỳnh Hoa</b> ร้านบั๋นหมี่คิวทอง แล้วไปเดินเล่นถนนคนเดิน</li>
+                <li><b>22:00 น.</b> เตรียมตัวขึ้น <b>รถบัสนอน VIP Cabin (Sleeper Bus)</b> มุ่งหน้าสู่ญาจาง</li>
+            </ul>
+            
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>โหลดแอป Grab ให้พร้อม:</b> ผูกบัตรเครดิต/ทราเวลการ์ดมาจากไทยเลย เรียก Grab ที่นี่ง่ายและรอดพ้นจากการโดนแท็กซี่โกงมิเตอร์ 100%</li>
+                    <li><b>ทริคสั่งบั๋นหมี่ (Bánh Mì):</b> ไส้มันจะใส่ตับบด (Pate) และพริกสด ถ้าไม่กินเผ็ดท่องคำนี้ไว้ <b>"โคง ไก (Không Cay)"</b> = ไม่เอาเผ็ด!</li>
+                    <li><b>เตรียมตัวขึ้นรถบัส:</b> รถบัสเวียดนามบังคับถอดรองเท้า (เขาจะมีถุงพลาสติกให้ใส่) และ <b>แอร์หนาวมาก!</b> ให้เอาเสื้อกันหนาว/ถุงเท้าขึ้นไปบนรถด้วย ห้ามโหลดลงใต้ท้องรถหมดเด็ดขาด</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="box-title hl-title">⭐ SIGNATURE & LOCAL HIGHLIGHTS</div>
+                <div class="item-row">☕ <b>Cà Phê Cóc (กาแฟยองยอง):</b> <span class="tag-local">LOCAL VIBE</span> นั่งยองๆ จิบกาแฟดริปริมถนน ดูการจราจรแบบไร้กฎเกณฑ์แต่ลื่นไหล!</div>
+                <div class="item-row">🛏️ <b>VIP Cabin Sleeper Bus:</b> <span class="tag-sig">SIGNATURE</span> โรงแรมแคปซูลเคลื่อนที่ นอนเหยียดขาตื่นมาโผล่อีกเมือง</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 2: แว้นมอเตอร์ไซค์รับลมทะเลญาจาง 🛵</h2>
+            <span class="card-date">28 ส.ค. (ญาจาง)</span>
+        </div>
+        <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmELFRKteAMGrM9LbXDuMlF25Qq4YjRbRNcF36-IM61hqMYQjSCmvPHkA&s=10" alt="Nha Trang">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>06:00 น.</b> ถึงญาจาง หาเฝอร้อนๆ ซดแก้แฮงก์รถ แล้วเช่ามอเตอร์ไซค์ (~150-200 บ./วัน)</li>
+                <li><b>09:00 น.</b> แว้นลุยแลนด์มาร์กอารยธรรมโบราณ: ปราสาทโพนคร (Po Nagar) และไหว้พระใหญ่วัดลองเซิน</li>
+                <li><b>15:00 น.</b> ขี่รถเลียบถนนหาด Tran Phu แวะโขดหินฮอนจง (Hon Chong) จิบน้ำมะพร้าว</li>
+                <li><b>19:00 น.</b> จัดมื้อเย็น <b>Nem Nướng (แหนมเนืองต้นตำรับ)</b> และเดินตลาดนัดคืนญาจาง</li>
+            </ul>
+
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>กฎการเช่ามอเตอร์ไซค์:</b> ตอนรับรถ <b>"ถ่ายรูปและถ่ายวิดีโอรอบคัน"</b> ไว้เป็นหลักฐานเสมอ และต้องใส่หมวกกันน็อคทั้งคนขี่และคนซ้อน (ตำรวจที่นี่จับจริงปรับจริง)</li>
+                    <li><b>สั่งกาแฟริมทะเล:</b> ไปถึงโขดหินฮอนจง ต้องสั่ง <b>"Cà phê sữa đá" (กาแฟนมข้นหวานเย็น)</b> คนให้เข้ากันแล้วนั่งจิบดูคลื่น</li>
+                    <li><b>วิธีกินแหนมเนืองญาจาง:</b> ไม่เหมือนของไทย! แผ่นแป้งที่นี่ไม่ต้องแช่น้ำ เอาหมู ผัก สมุนไพร วางทับด้วยแผ่นแป้งกรอบม้วนๆ แล้วจิ้มน้ำจิ้มสีส้มข้นๆ อร่อยแสงออกปาก</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="box-title hl-title">⭐ SIGNATURE & LOCAL HIGHLIGHTS</div>
+                <div class="item-row">🛵 <b>แว้นเลียบหาดข้ามสะพาน:</b> <span class="tag-local">LOCAL VIBE</span> ขี่รถข้ามสะพาน Xóm Bóng ช่วงเย็น ดูฝูงเรือประมงไม้จอดเรียงราย</div>
+                <div class="item-row">🦀 <b>ซีฟู้ดน้ำจิ้มสีเขียว:</b> <span class="tag-sig">SIGNATURE</span> กินซีฟู้ดร้านริมทางจิ้ม "Muối Ớt Chanh" (เกลือพริกมะนาวสีเขียว) โคตรแซ่บ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 3: ตลาดดิบๆ & ย้ายฐานทัพสู่ทะเลทราย 🏜️</h2>
+            <span class="card-date">29 ส.ค. (ญาจาง ➔ หมุยเน่)</span>
+        </div>
+        <img class="card-img" src="https://cdn.sanity.io/images/nxpteyfv/goguides/60dd8070e6db9ccbf5c10a4662d0aacb2820da24-1600x1066.jpg" alt="Local Market">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>08:00 น.</b> แว้นมอเตอร์ไซค์ไปลุยตลาดเช้า <b>Xóm Mới</b> ดูวิถีชีวิตแม่ค้าญาจางแบบดิบๆ</li>
+                <li><b>10:30 น.</b> เช็กเอาต์ หาข้าวมันหมูย่าง (Cơm Tấm) หอมๆ กินก่อนเดินทาง</li>
+                <li><b>13:00 น.</b> ขึ้นรถบัสยิงยาวลงใต้สู่ "หมุยเน่" (~3.5 ชม.)</li>
+                <li><b>17:30 น.</b> เช็กอินที่พักริมหาด ออกมานั่งฟังเสียงคลื่น ดื่มเบียร์ท้องถิ่น (Bia Saigon)</li>
+            </ul>
+
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>ตะลุยตลาดเช้าหาของกิน:</b> มองหาร้านที่ขาย <b>"Bánh Căn" (บั๊นกัง)</b> เป็นแป้งข้าวเจ้าย่างเตาดินเผา คล้ายขนมครกแต่ใส่ไส้ปลาหมึก กุ้ง ไข่นกกระทา จิ้มน้ำปลารสเด็ด ต้องกินให้ได้!</li>
+                    <li><b>เตรียมเสบียงขึ้นรถ:</b> ซื้อน้ำเปล่าและขนมขบเคี้ยวจากมินิมาร์ทติดกระเป๋าไว้กินบนรถบัสข้ามเมือง (บนรถไม่มีแจก)</li>
+                    <li><b>ทริคกินซีฟู้ดหมุยเน่:</b> เวลาเข้าร้านซีฟู้ดริมหาด (Bo Ke) ให้ <b>"เช็กราคาต่อ 1 กิโลกรัม"</b> เสมอ (ถามเขาว่า Bao nhiêu một ký?) และให้เขาชั่งน้ำหนักให้ดูก่อนทำอาหาร เพื่อป้องกันบิลช็อค</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="box-title hl-title">⭐ SIGNATURE & LOCAL HIGHLIGHTS</div>
+                <div class="item-row">🐟 <b>ตลาดปลาตอนเช้า:</b> <span class="tag-local">LOCAL VIBE</span> เดินเบียดเสียดดูคนพื้นที่ซื้อขายของสด เสียงต่อราคาคือเสน่ห์!</div>
+                <div class="item-row">🌾 <b>เมืองฟีลหมู่บ้านประมง:</b> หมุยเน่จะสงบกว่าญาจาง ได้ความชิลริมหาดที่แท้จริง</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 4: รถจี๊ปคลาสสิก & ทะเลทราย 🚙</h2>
+            <span class="card-date">30 ส.ค. (หมุยเน่ ➔ โฮจิมินห์)</span>
+        </div>
+        <img class="card-img" src="https://statics.vinpearl.com/white-sand-dunes-mui-ne-5_1686552957.jpg" alt="Sand Dunes">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>04:30 น.</b> ตื่นเช้าตรู่! รถจี๊ปมารับ ตะลุย <b>ทะเลทรายขาว (White Sand Dunes)</b> ดูพระอาทิตย์ขึ้น</li>
+                <li><b>07:30 น.</b> แวะถ่ายรูป <b>ทะเลทรายแดง (Red Sand Dunes)</b> สีส้มอิฐสวยแปลกตา</li>
+                <li><b>08:30 น.</b> ดูวิถีหมู่บ้านประมง (Fishing Village) แล้วไปลุยน้ำที่ <b>ลำธารนางฟ้า (Fairy Stream)</b></li>
+                <li><b>12:00 น.</b> แวะกิน Bánh Xèo อาบน้ำ เช็กเอาต์ แล้วรอขึ้นรถบัสนอน 22:00 น. กลับไซ่ง่อน</li>
+            </ul>
+
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>ทริคแต่งตัวทัวร์จี๊ป:</b> ให้เพื่อนๆ นัดคุมธีมเสื้อผ้าสีจัดๆ (แดง, เหลือง, ขาว, น้ำเงิน) ถ่ายรูปตัดกับสีทรายจะออกมาปังมาก และ <b>"ห้ามลืมแว่นกันแดดเด็ดขาด"</b> ลมพัดทรายเข้าตา 100%</li>
+                    <li><b>การเช่ารถ ATV กลางทะเลทราย:</b> ถ้าอยากนั่ง ATV แว้นขึ้นยอดเนินทราย <b>ต้องตกลงราคาก่อนขึ้นเสมอ</b> (ต่อราคาได้) และถามให้ชัดเจนว่าราคานี้วิ่งได้กี่รอบ</li>
+                    <li><b>เตรียมตัวลุยลำธารนางฟ้า (Fairy Stream):</b> ต้องถอดรองเท้าเดินลุยน้ำระดับตาตุ่มตลอดสาย แนะนำให้ <b>ใส่กางเกงขาสั้น</b> และใส่รองเท้าแตะที่ถอดถือสะดวกๆ ไป</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="box-title hl-title">⭐ SIGNATURE & LOCAL HIGHLIGHTS</div>
+                <div class="item-row">🚙 <b>Jeep Tour คลาสสิก:</b> <span class="tag-sig">SIGNATURE</span> นั่งรถจี๊ปเปิดประทุนวิ่งโต้ลมกลางทะเลทราย ภาพนี้คือไฮไลต์!</div>
+                <div class="item-row">🚣‍♂️ <b>เรือกระทะทรงกลม:</b> <span class="tag-local">LOCAL VIBE</span> ดูเรือกะละมังไฟเบอร์หมุนวนกลางทะเล ภูมิปัญญาชาวเลเวียดนามแท้ๆ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 5: คาเฟ่ฮ็อปปิ้งในตึกเก่า & ท่องราตรี 🏙️</h2>
+            <span class="card-date">31 ส.ค. (โฮจิมินห์)</span>
+        </div>
+        <img class="card-img" src="https://cdn.getyourguide.com/image/format=avif,fit=cover,gravity=auto,quality=60/dam/iStock-1401126607-MOBILE%20HEADER.jpg" alt="Cafe Culture">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>06:00 น.</b> ถึงโฮจิมินห์ ฝากกระเป๋า ลุยหาข้าวมันหมูย่างร้านเด็ด เติมพลัง</li>
+                <li><b>10:00 น.</b> เสพประวัติศาสตร์ที่ พิพิธภัณฑ์สงคราม (War Remnants Museum)</li>
+                <li><b>14:00 น.</b> เช็กอิน <b>The Cafe Apartments</b> ตึกอพาร์ตเมนต์เก่าที่มีคาเฟ่ซ่อนอยู่ทุกชั้น!</li>
+                <li><b>20:00 น.</b> ลุยราตรีไซ่ง่อนที่ถนนคนเดิน Bui Vien นั่งดูแสงสีและความคึกคัก</li>
+            </ul>
+
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>สั่งข้าวมันหมูย่าง (Cơm Tấm):</b> ถ้าไปร้านดัง ให้ชี้ป้ายสั่งแบบคอมโบ <b>"Cơm Tấm Sườn Bì Chả"</b> จะได้ครบทั้ง ซี่โครงหมูย่าง หนังหมูซอย และไข่ตุ๋นเวียดนาม ราดน้ำปลาหวานๆ กินแล้วฟินมาก</li>
+                    <li><b>ทริค The Cafe Apartments:</b> ถ้าขึ้นลิฟต์จะต้องเสียเงิน (ประมาณ 3,000-5,000 ดอง) แต่ <b>สามารถนำใบเสร็จค่าลิฟต์ไปเป็นส่วนลดค่าเครื่องดื่มในร้านคาเฟ่ได้</b> (หรือถ้าอยากออกกำลังกาย ก็เดินขึ้นบันไดฟรี!)</li>
+                    <li><b>เดินถนน Bui Vien:</b> ให้ <b>"สะพายกระเป๋าแนบไว้ข้างหน้าเสมอ"</b> อย่าเก็บของมีค่าไว้ในกระเป๋ากางเกงด้านหลังเด็ดขาด เพราะคนเยอะและเบียดกันมาก ระวังล้วงกระเป๋า</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="box-title hl-title">⭐ SIGNATURE & LOCAL HIGHLIGHTS</div>
+                <div class="item-row">🏢 <b>ตึกแถวทรงหลอด:</b> <span class="tag-sig">SIGNATURE</span> สังเกตสถาปัตยกรรมตึกที่หน้ากว้างแค่ 3 เมตรแต่สูงปรี๊ด 5 ชั้น</div>
+                <div class="item-row">🍻 <b>วัฒนธรรมเบียร์สด:</b> <span class="tag-local">LOCAL VIBE</span> นั่งม้านั่งริมฟุตบาทชนแก้วเบียร์สดราคาถูก กับเพื่อนและคนแปลกหน้า</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Day 6: โกยของฝากตลาดท้องถิ่น & บินกลับ ✈️</h2>
+            <span class="card-date">1 ก.ย. (โฮจิมินห์ ➔ กทม.)</span>
+        </div>
+        <img class="card-img" src="https://izitour.com/media/blog/tan-son-nhat-outside.webp" alt="Market">
+        <div class="card-body">
+            <ul class="timeline">
+                <li><b>09:00 น.</b> ลุย <b>ตลาดเบ๊นถั่ญ (Ben Thanh Market)</b> ซื้อกาแฟดริป (Trung Nguyen) และของฝาก</li>
+                <li><b>12:00 น.</b> จัดเฝอหรือบั๋นหมี่ส่งท้าย ก่อนมุ่งหน้าไปสนามบิน (SGN)</li>
+                <li><b>19:00 น.</b> บินกลับถึง <b>สนามบินดอนเมือง (DMK)</b> โดยสวัสดิภาพ!</li>
+            </ul>
+
+            <div class="mission-box">
+                <div class="box-title ms-title">🎯 Mission: สิ่งที่ต้องทำ & ทริคลับ</div>
+                <ul class="mission-list">
+                    <li><b>สกิลต่อราคาตลาดเบ๊นถั่ญ:</b> กฎเหล็กคือ <b>"ต่อลงไปเลย 40-50% ของราคาที่เขาบอก"</b> ถ้าไม่ได้ให้ใช้ท่าไม้ตาย "แกล้งเดินหนี" เดี๋ยวแม่ค้าจะดึงแขนเรากลับมาให้ราคาถูกเอง</li>
+                    <li><b>ของฝากยอดฮิต:</b> ซื้อกาแฟแบรนด์ <b>Trung Nguyen (เบอร์ 1, 5, หรือ 8 ยอดฮิต)</b> พร้อมที่ดริปกาแฟสแตนเลส (Phin) หรือ ชาอาร์ติโชก (Trà Atisô) และมะม่วงหิมพานต์เม็ดใหญ่ๆ กลับไปฝากที่บ้าน</li>
+                    <li><b>แพ็คของกลับบ้าน:</b> ใครช้อปเพลิน <b>อย่าลืมจัดน้ำหนักกระเป๋าให้ดีก่อนไปสนามบิน</b> ถ้าถือขึ้นเครื่อง (Carry-on) ปกติให้ไม่เกิน 7 กิโลกรัมนะครับ เดี๋ยวโดนปรับหน้าเกท!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="budget-box">
+        <h2>💵 ยอดสรุปงบส่วนกลางคงที่: 9,100 บาท / คน 💵</h2>
+        <p class="budget-note">
+            (ครอบคลุม: ตั๋วเครื่องบิน, ที่พัก 3 คืน, รถบัสนอน 2 คืน, ทัวร์รถจี๊ป)<br><br>
+            <strong>*เรื่องกิน/คาเฟ่ ลุยหารกันเองหน้างาน ควักเนื้อเพิ่มอีกนิดหน่อย หมื่นต้นๆ เอาอยู่!*</strong>
+        </p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-box">
+        <h2>📞 ติดต่อแก๊งผู้นำทริป</h2>
+        <p>มีข้อสงสัย ทวงคิว ทวงรูป หรือโอนเงินค่าทริป ติดต่อได้ที่นี่เลยจ้า!</p>
+        <div class="contact-email">
+            <div class="email-badge">
+                <span>😎 แป๊ป:</span> Jinnpha.pap@gmail.com
+            </div>
+            <div class="email-badge">
+                <span>📸 แป้ง:</span> rannilin.94@gmail.com
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
