@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ค่าใช้จ่าย - ทริปเวียดนามใต้ สายลุย Local 100%</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Kanit', sans-serif; background-color: #FAFAFA; color: #333333; line-height: 1.6; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(rgba(194, 65, 12, 0.85), rgba(154, 52, 18, 0.85)), url('https://cdn.sanity.io/images/nxpteyfv/goguides/60dd8070e6db9ccbf5c10a4662d0aacb2820da24-1600x1066.jpg') center/cover; color: white; padding: 40px 20px; text-align: center; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.2); }
+        header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
+        
+        /* Sticky Navbar */
+        .navbar { position: sticky; top: 10px; z-index: 1000; background: #FFFFFF; border-radius: 12px; padding: 10px 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid #FFEDD5; display: flex; flex-direction: column; gap: 10px; }
+        .nav-group { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .nav-divider { height: 1px; background: #FFEDD5; margin: 2px 0; }
+        .nav-btn { text-decoration: none; color: #9A3412; background: #FFF7ED; padding: 6px 14px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; transition: all 0.2s ease; border: 1px solid #FFEDD5; white-space: nowrap; }
+        .nav-btn:hover, .nav-btn.active { background: #EA580C; color: #FFFFFF; border-color: #EA580C; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25); }
+
+        /* Card & Table */
+        .card { background: #FFFFFF; border-radius: 16px; padding: 25px 20px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); border: 1px solid #FFEDD5; }
+        .card-title { font-size: 1.3rem; font-weight: 700; color: #EA580C; margin-top: 0; margin-bottom: 15px; text-align: center; border-bottom: 2px dashed #FFEDD5; padding-bottom: 10px; }
+        
+        .expense-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+        .expense-table th, .expense-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #FFEDD5; }
+        .expense-table th { background: #FFF7ED; color: #C2410C; font-weight: 700; }
+        .expense-table td.amount { text-align: right; font-weight: 700; color: #1F2937; white-space: nowrap; }
+        .expense-table tr.total-row td { background: #FFF7ED; font-size: 1.05rem; color: #EA580C; border-top: 2px solid #EA580C; }
+
+        /* Extra Table Specific Style */
+        .extra-card { background: #FFFFFF; border-radius: 16px; padding: 25px 20px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); border: 1px solid #FECACA; }
+        .extra-title { font-size: 1.3rem; font-weight: 700; color: #DC2626; margin-top: 0; margin-bottom: 15px; text-align: center; border-bottom: 2px dashed #FECACA; padding-bottom: 10px; }
+        .extra-table { width: 100%; border-collapse: collapse; }
+        .extra-table th, .extra-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #FEE2E2; }
+        .extra-table th { background: #FEF2F2; color: #991B1B; font-weight: 700; }
+        .extra-table td.amount { text-align: right; font-weight: 700; color: #991B1B; white-space: nowrap; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.7rem; }
+            .expense-table th, .expense-table td,
+            .extra-table th, .extra-table td { padding: 8px 6px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>💵 EXPENSES & BUDGET</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-group">
+            <a href="index.html" class="nav-btn">🏠 หน้าแรก</a>
+            <a href="accommodation.html" class="nav-btn">🏨 ที่พัก</a>
+            <a href="expenses.html" class="nav-btn active">💵 ค่าใช้จ่าย</a>
+            <a href="transport.html" class="nav-btn">🚌 การเดินทาง</a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group">
+            <a href="day1.html" class="nav-btn">Day 1</a>
+            <a href="day2.html" class="nav-btn">Day 2</a>
+            <a href="day3.html" class="nav-btn">Day 3</a>
+            <a href="day4.html" class="nav-btn">Day 4</a>
+            <a href="day5.html" class="nav-btn">Day 5</a>
+            <a href="day6.html" class="nav-btn">Day 6</a>
+        </div>
+    </nav>
+
+    <!-- ตารางสรุปค่าใช้จ่ายหลัก -->
+    <div class="card">
+        <h2 class="card-title">💰 สรุปค่าใช้จ่ายหลัก (ประมาณการต่อคน)</h2>
+        <table class="expense-table">
+            <thead>
+                <tr>
+                    <th>รายการค่าใช้จ่าย</th>
+                    <th style="text-align: right;">จำนวนเงิน (บาท)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>✈️ ค่าตั๋วเครื่องบิน ไป-กลับ</td>
+                    <td class="amount">4,700.00</td>
+                </tr>
+                <tr>
+                    <td>🏨 ค่าห้องพัก 3 คืน (รวม 4,718.- ÷ 5 คน)</td>
+                    <td class="amount">943.60</td>
+                </tr>
+                <tr>
+                    <td>🚌 ค่ารถบัสนอน VIP (ไป 550.- / กลับ 550.-)</td>
+                    <td class="amount">1,100.00</td>
+                </tr>
+                <tr>
+                    <td>🚗 ค่า Grab กองกลาง (ตั้งงบสำรองไว้)</td>
+                    <td class="amount">1,000.00</td>
+                </tr>
+                <tr>
+                    <td>💰 กองกลางส่วนตัว (ลงไว้ที่พี่แป้ง)</td>
+                    <td class="amount">2,500.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td><b>รวมยอดเตรียมล่วงหน้าโดยประมาณ</b></td>
+                    <td class="amount"><b>~10,243.60</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ตารางค่าใช้จ่ายเพิ่มเติมหน้างาน -->
+    <div class="extra-card">
+        <h2 class="extra-title">⚠️ ค่าใช้จ่ายเพิ่มเติมหน้างาน (ประมาณการต่อคน)</h2>
+        <table class="extra-table">
+            <thead>
+                <tr>
+                    <th>รายการกิจกรรม / ค่าใช้จ่าย</th>
+                    <th>รายละเอียดเพิ่มเติม</th>
+                    <th style="text-align: right;">งบประมาณ (บาท)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🛵 เช่ามอเตอร์ไซค์ + ค่าน้ำมัน</td>
+                    <td>ญาจาง (หาร 2 คน/คัน)</td>
+                    <td class="amount">150 - 250</td>
+                </tr>
+                <tr>
+                    <td>🚙 ค่าทัวร์รถจี๊ป + เล่น ATV</td>
+                    <td>ทะเลทรายหมุยเน่</td>
+                    <td class="amount">200 - 500</td>
+                </tr>
+                <tr>
+                    <td>🎫 ค่าตั๋วเข้าชมสถานที่ต่างๆ</td>
+                    <td>ปราสาทโพนคร, ฮอนจง, ลำธารนางฟ้า, พิพิธภัณฑ์</td>
+                    <td class="amount">180 - 200</td>
+                </tr>
+                <tr>
+                    <td>🧳 ค่าฝากกระเป๋าเดินทาง</td>
+                    <td>วันแรกและวันสุดท้ายในโฮจิมินห์</td>
+                    <td class="amount">50 - 100</td>
+                </tr>
+                <tr>
+                    <td>🛍️ ค่าช้อปปิ้ง & ของฝากส่วนตัว</td>
+                    <td>กาแฟ, ชา, เม็ดมะม่วงหิมพานต์ ฯลฯ</td>
+                    <td class="amount">1,000 - 2,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การเดินทาง - ทริปเวียดนามใต้ สายลุย Local 100%</title>
+    <!-- นำเข้าฟอนต์ Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #FAFAFA;
+            color: #333333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(rgba(194, 65, 12, 0.85), rgba(154, 52, 18, 0.85)), url('https://image.kkday.com/v2/image/get/c_fit%2Cq_55%2Ct_webp%2Cw_960/s1.kkday.com/product_22234/20201208084321_vXRrA/jpg') center/cover;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        /* Sticky Navbar Bar */
+        .navbar {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #FFEDD5;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .nav-group {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .nav-divider {
+            height: 1px;
+            background: #FFEDD5;
+            margin: 2px 0;
+        }
+        .nav-btn {
+            text-decoration: none;
+            color: #9A3412;
+            background: #FFF7ED;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            border: 1px solid #FFEDD5;
+            white-space: nowrap;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: #EA580C;
+            color: #FFFFFF;
+            border-color: #EA580C;
+            box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);
+        }
+
+        /* Card Style */
+        .card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #FFEDD5;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #EA580C;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px dashed #FFEDD5;
+            padding-bottom: 10px;
+        }
+
+        /* Transport Summary Table */
+        .transport-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .transport-table th, .transport-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #FFEDD5;
+        }
+        .transport-table th {
+            background: #FFF7ED;
+            color: #C2410C;
+            font-weight: 700;
+        }
+        .transport-table td.cost {
+            font-weight: 700;
+            color: #EA580C;
+            white-space: nowrap;
+        }
+
+        /* Transport Detail Grid */
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .transport-item {
+            background: #FFF7ED;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #F97316;
+        }
+        .transport-item h3 {
+            margin-top: 0;
+            color: #C2410C;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .transport-item ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+        .transport-item li {
+            margin-bottom: 6px;
+        }
+
+        /* 🚨 NEW WARNING / HIGH-ALERT STYLING (🔥 ปรับใหม่ตามขอ) 🚨 */
+        .alert-card {
+            background: #7F1D1D; /* แดงเข้มเข้มข้น */
+            border: 3px solid #DC2626;
+            border-radius: 16px;
+            padding: 22px 18px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .alert-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-top: 0;
+            margin-bottom: 18px;
+            text-align: center;
+            background: #B91C1C;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px dashed #FCA5A5;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .alert-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .alert-list-item {
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.5;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        /* สลับสีสไตล์ Warning แดงสลับเข้ม-สว่าง */
+        .alert-list-item:nth-child(odd) {
+            background: #FEF2F2;
+            color: #991B1B;
+            border-left: 6px solid #DC2626;
+        }
+        .alert-list-item:nth-child(even) {
+            background: #FFF7ED;
+            color: #9A3412;
+            border-left: 6px solid #EA580C;
+        }
+        .alert-list-item:hover {
+            transform: translateX(4px);
+        }
+        .alert-list-item b {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .alert-list-item:nth-child(odd) b { color: #7F1D1D; }
+        .alert-list-item:nth-child(even) b { color: #C2410C; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.7rem; }
+            .transport-table th, .transport-table td { padding: 8px 6px; font-size: 0.85rem; }
+            .alert-title { font-size: 1.15rem; flex-direction: column; gap: 4px; }
+            .alert-list-item { font-size: 0.88rem; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🚌 TRANSPORTATION</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-group">
+            <a href="index.html" class="nav-btn">🏠 หน้าแรก</a>
+            <a href="accommodation.html" class="nav-btn">🏨 ที่พัก</a>
+            <a href="expenses.html" class="nav-btn">💵 ค่าใช้จ่าย</a>
+            <a href="transport.html" class="nav-btn active">🚌 การเดินทาง</a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group">
+            <a href="day1.html" class="nav-btn">Day 1</a>
+            <a href="day2.html" class="nav-btn">Day 2</a>
+            <a href="day3.html" class="nav-btn">Day 3</a>
+            <a href="day4.html" class="nav-btn">Day 4</a>
+            <a href="day5.html" class="nav-btn">Day 5</a>
+            <a href="day6.html" class="nav-btn">Day 6</a>
+        </div>
+    </nav>
+
+    <!-- 🚨 โซนเตือนภัยสลับสีสไตล์ Warning 🚨 -->
+    <div class="alert-card">
+        <h2 class="alert-title">⚠️ เตือนภัยขั้นสุด! มิจฉาชีพ & ข้อควรระวังการเดินทาง</h2>
+        
+        <div class="alert-list-container">
+            <div class="alert-list-item">
+                ❌ <b>1. ห้ามโบกแท็กซี่ริมทางเด็ดขาด:</b> มิเตอร์วิ่งไวเหมือนกิโลเมตรละร้อย หรือชอบทอนเงินผิด ทอนแบงก์ปลอม!
+            </div>
+            
+            <div class="alert-list-item">
+                📱 <b>2. เรียก Grab ผ่านแอปเท่านั้น:</b> ผูกบัตร Travel Card ตัดผ่านแอปไปเลย จ่ายตรงปก ไม่โดนฟันแน่นอน
+            </div>
+
+            <div class="alert-list-item">
+                🚫 <b>3. เมินคนชวนขึ้นรถหน้าประตูสนามบิน:</b> คนเดินเข้ามาสะกิดชวนขึ้นรถคือมิจฉาชีพ ให้ตั้งสติเดินไปจุดนัดพบ Grab เท่านั้น
+            </div>
+
+            <div class="alert-list-item">
+                📲 <b>4. ห้ามถือโทรศัพท์มือถือยืนริมถนน (โฮจิมินห์/Bui Vien):</b> มอเตอร์ไซค์ขี่ประกบโฉบมือถือไปจากมือไวมาก! จะเช็กแมปให้เข้ามายืนชิดในตึกก่อน
+            </div>
+
+            <div class="alert-list-item">
+                🎒 <b>5. สะพายกระเป๋าแนบหน้าอกเสมอ:</b> ห้ามสะพายไว้ข้างหลังหรือเอาใส่กระเป๋ากางเกงด้านหลังเด็ดขาด ระวังล้วงกระเป๋า
+            </div>
+
+            <div class="alert-list-item">
+                🛵 <b>6. เช่ามอเตอร์ไซค์ต้องอัดคลิปวิดีโอรอบคัน:</b> ตอนรับรถควักมือถือมาอัดคลิปและถ่ายรูปทุกรอยถลอกต่อหน้าเจ้าของร้าน กันโดนยึดเงินมัดจำ
+            </div>
+
+            <div class="alert-list-item">
+                👮‍♂️ <b>7. ขี่มอเตอร์ไซค์ต้องใส่หมวกกันน็อค & เปิดไฟเลี้ยว:</b> ตำรวจญาจางสุ่มจับปรับเงินสดนักท่องเที่ยวบ่อยมาก
+            </div>
+
+            <div class="alert-list-item">
+                💶 <b>8. พกเงินสดแบงก์ย่อยแยกใส่กระเป๋าเสื้อ:</b> พกแบงก์ 100,000 VND แยกไว้ เผื่อโดนตำรวจเรียกไกล่เกลี่ยค่าปรับหน้างาน
+            </div>
+
+            <div class="alert-list-item">
+                🏜️ <b>9. เช่า ATV ทะเลทรายหมุยเน่ ต้องถามราคาให้ชัดก่อนขึ้น:</b> เช็กให้ชัวร์ว่าราคานี้เป็นเงินดอง (VND) หรือดอลลาร์ (USD) และคิดต่อคนหรือต่อคัน
+            </div>
+
+            <div class="alert-list-item">
+                📸 <b>10. สะพายกล้องติดตัวแน่นๆ บนรถจี๊ป/ATV:</b> รถเหวี่ยงแรงมาก และต้องใส่ถุงซิปล็อคป้องกันทรายพัดเข้าเลนส์กล้อง
+            </div>
+
+            <div class="alert-list-item">
+                💵 <b>11. ระวังยื่นแบงก์ดอง (VND) ผิด:</b> แบงก์ 100,000 VND (เขียว) คล้าย 10,000 VND และแบงก์ 500,000 VND (ฟ้า) คล้าย 20,000 VND สังเกตเลขศูนย์ดีๆ
+            </div>
+
+            <div class="alert-list-item">
+                ✋ <b>12. ห้ามยอมให้พ่อค้าจับเงินในกระเป๋าเราเด็ดขาด:</b> บางร้านทำทีช่วยหยิบเงินแล้วเนียนดึงแบงก์ใหญ่ ให้เรานับยื่นเองกับมือเท่านั้น!
+            </div>
+
+            <div class="alert-list-item">
+                🚌 <b>13. นอนบน Sleeper Bus ต้องกอดกระเป๋าของมีค่าไว้บนอก:</b> ห้ามวางเงิน/พาสปอร์ตไว้ที่ช่องวางเท้าเด็ดขาด
+            </div>
+        </div>
+    </div>
+
+    <!-- ตารางสรุปการเดินทางข้ามเมือง -->
+    <div class="card">
+        <h2 class="card-title">🗺️ สรุปเส้นทาง & ยานพาหนะข้ามเมือง</h2>
+        <table class="transport-table">
+            <thead>
+                <tr>
+                    <th>เส้นทาง</th>
+                    <th>ยานพาหนะ</th>
+                    <th>เวลาเดินทางโดยประมาณ</th>
+                    <th style="text-align: right;">ค่าใช้จ่าย / คน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>✈️ กทม. ➔ โฮจิมินห์ (SGN)</td>
+                    <td>เครื่องบิน (Flight)</td>
+                    <td>1 ชม. 45 นาที</td>
+                    <td class="cost" style="text-align: right;">~4,700 ฿ (ไป-กลับ)</td>
+                </tr>
+                <tr>
+                    <td>🚌 โฮจิมินห์ ➔ ญาจาง</td>
+                    <td>Sleeper Bus (VIP Cabin)</td>
+                    <td>7 - 8 ชั่วโมง (นอนบนรถ)</td>
+                    <td class="cost" style="text-align: right;">550 ฿</td>
+                </tr>
+                <tr>
+                    <td>🚌 ญาจาง ➔ หมุยเน่</td>
+                    <td>Sleeper Bus / Express Bus</td>
+                    <td>3.5 - 4 ชั่วโมง</td>
+                    <td class="cost" style="text-align: right;">รวมในงบส่วนกลาง</td>
+                </tr>
+                <tr>
+                    <td>🚌 หมุยเน่ ➔ โฮจิมินห์</td>
+                    <td>Sleeper Bus (VIP Cabin)</td>
+                    <td>4 - 5 ชั่วโมง (นอนบนรถ)</td>
+                    <td class="cost" style="text-align: right;">550 ฿</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- รายละเอียด & คำแนะนำการเดินทางแต่ละประเภท -->
+    <div class="card">
+        <h2 class="card-title">💡 ทริคลับการเดินทางแต่ละประเภท</h2>
+        <div class="transport-grid">
+            <div class="transport-item">
+                <h3>🛏️ Sleeper Bus (รถบัสนอน)</h3>
+                <ul>
+                    <li><b>บังคับถอดรองเท้า:</b> จะมีถุงพลาสติกแจกหน้าทางขึ้นรถสำหรับใส่รองเท้าถือขึ้นไป</li>
+                    <li><b>แอร์หนาวมาก:</b> ต้องพกเสื้อกันหนาว/ถุงเท้าขึ้นไปบนเบาะ ห้ามโหลดใต้ท้องรถหมด</li>
+                    <li><b>สัมภาระ:</b> กระเป๋าเดินทางใบใหญ่จะถูกเก็บใต้ท้องรถ (รับแท็กกระเป๋าไว้ด้วย)</li>
+                </ul>
+            </div>
+
+            <div class="transport-item">
+                <h3>🛵 รถมอเตอร์ไซค์เช่า (ญาจาง)</h3>
+                <ul>
+                    <li><b>ราคาทั่วไป:</b> 120,000 - 150,000 ดอง/วัน (~180 - 220 บาท)</li>
+                    <li><b>ถ่ายรูปเป็นหลักฐาน:</b> ตอนรับรถให้ควักมือถือมาถ่ายรูปและอัดวิดีโอมุมรอบคันไว้</li>
+                    <li><b>หมวกกันน็อค 100%:</b> ตำรวจเข้มงวดมากทั้งคนขี่และคนซ้อน</li>
+                </ul>
+            </div>
+
+            <div class="transport-item">
+                <h3>🚙 Jeep Tour & ATV (หมุยเน่)</h3>
+                <ul>
+                    <li><b>รถจี๊ปรวมทัวร์:</b> ตกลงเวลาให้มารับที่รีสอร์ทตอน 04:30 น. (คนละ ~200 บาท)</li>
+                    <li><b>รถ ATV ทะเลทรายขาว:</b> เป็นออปชั่นเสริมขี่ขึ้นเนินทราย ตกลงราคาก่อนขึ้นเสมอ</li>
+                    <li><b>ป้องกันทราย:</b> พกแว่นกันแดดและผ้าโพกหน้ากันทรายพัดเข้าตา</li>
+                </ul>
+            </div>
+
+            <div class="transport-item">
+                <h3>🚗 Grab Car (ในเมือง)</h3>
+                <ul>
+                    <li><b>ผูกบัตรล่วงหน้า:</b> ผูกบัตร Youtrip/Travel Card ไว้กับแอปตั้งแต่อยู่ไทย</li>
+                    <li><b>ไร้ปัญหาโดนโกง:</b> ตัดปัญหาโดนแท็กซี่โกงมิเตอร์หรือเรียกราคาเหมา 100%</li>
+                    <li><b>หารงบกลาง:</b> ตั้งงบส่วนกลางไว้คนละ 1,000 บาทสำหรับกดหาร Grab ทั้งทริป</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
